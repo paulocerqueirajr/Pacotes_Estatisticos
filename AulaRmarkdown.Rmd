@@ -1,0 +1,697 @@
+---
+title: "Introdução ao R"
+subtitle: 'Rmarkdown'
+author: "Prof. Paulo Cerqueira Junior"
+date: ""
+header-includes:
+   - \usepackage{bm}
+   #- \usepackage[Portuguese]{babel}
+output:
+  beamer_presentation: default
+  ioslides_presentation: default
+  slidy_presentation: default
+  incremental: true
+beamertheme: "Berlin"
+colortheme: "orchid"
+fonttheme: "structurebold"
+classoption: aspectratio=169   
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Markdown
+
+## Markdown
+
+-   Markdown é uma linguagem de marcação. \pause
+
+-   Linguagens de marcação dizem como algo deve ser entendido, mas não
+    têm capacidade de processamento e execução de funções. \pause
+
+-   Markdown é simples e tem a possibilidade de utilização de uma
+    linguagem comum para a criação de vários tipos de documentos.
+
+\pause
+
+-   Por exemplo, um mesmo código Markdown pode ser convertido para HTML,
+    LaTeX (gera pdf’s), docx etc.
+
+\pause
+
+-   Necessário um *conversor*, que lê um código em Markdown e,
+    considerando a escolha do output desejado, converte o arquivo para a
+    linguagem desejada.
+
+# Rmarkdown
+
+## Rmarkdown
+
+-   Executar *scripts* em `R` (além de outras linguagens) e
+    incorporá-los a um arquivo Markdown (extensão .md).
+
+\pause
+
+-   O pacote `knitr` executará **pedaços** ( *chunk* ) de códigos e
+    gerará um arquivo `.md` com os códigos e seus resultados.
+
+\pause
+
+-   Em seguida, usamo-se o `pandoc` para converter a linguagem desejada,
+    gerando os arquivos nos formatos escolhidos (`.html`, `.docx`,
+    `.pdf`, `.odt`).
+
+\pause
+
+```{=tex}
+\begin{center}
+\scalebox{0.6}{\includegraphics{RMD_1.png}}
+\end{center}
+```
+# Estrutura do Rmarkdown no `R`
+
+## Estrutura do Rmarkdown no `R`
+
+::: columns
+::: column
+\normalsize
+
+-   Vamos fazer o uso do `R`, com linguagem de programação.
+
+\pause
+
+-   Integrando desde a etapa de análise de dados até o compartilhamento
+    de seus códigos, gráficos e constatações por meio de relatórios,
+    slides, artigos em \TeX \hspace{0.1cm} e até mesmo livros.
+
+\pause
+
+-   Esta apresentação mesmo foi toda confeccionada dentro da linguagem
+    `R`.
+:::
+
+::: column
+\pause
+
+```{=tex}
+\begin{center}
+\scalebox{1}{\includegraphics{RMD_2.png}}
+\end{center}
+```
+:::
+:::
+
+## Estrutura do Rmarkdown no `R`
+
+::: columns
+::: column
+-   Para inicia no `R Markdown`, você precisa criar um novo arquivo do
+    tipo .Rmd:
+
+\pause
+
+-   Clique:
+
+\pause
+
+1.  Botão de novo arquivo ![](botao_1.png)
+
+\pause
+
+2.  Escolher *RMarkdown* ![](botao_2.png)
+:::
+
+::: column
+\pause
+
+Uma nova janela será aberta, e você deverá escolher que tipo de arquivo
+de *output* deseja, se `HTML`, `PDF` ou `.docx`. \vspace{0.3cm}
+
+\pause
+
+![](botao_3.png)
+:::
+:::
+
+## Estrutura do Rmarkdown no `R`
+
+-   Automaticamente será criada uma nova aba, com um modelo de relatório
+    `.Rmd`.
+
+\pause
+
+-   \alert{ATENÇÃO:} No primeiro uso, o próprio RStudio irá oferecer a
+    instalação de alguns pacotes necessários (e suas dependências) para
+    rodarmos o `R markdown`.
+
+\pause
+
+-   Um pacote importante é o `tinytex`. Ele realiza uma instalação
+    mínima de bibliotecas de \LaTeX necessárias para a geração de
+    documentos `.pdf` a partir do `R Markdown`.
+
+\pause
+
+-   Após a instalação dos pacotes, execute no console o código abaixo e
+    depois reiniciar sua sessão do RStudio.
+
+\pause
+
+```{sh, eval=FALSE, echo=TRUE}
+tinytex::install_tinytex()
+```
+
+ou
+
+```{sh, eval=FALSE, echo=TRUE}
+install.packages("tinytex")
+```
+
+## Estrutura do Rmarkdown no `R`
+
+::: columns
+::: column
+-   Na aba criada, estão todos os dados que você informou anteriormente.
+
+\pause
+
+-   Alguns exemplos criados retratando o simples funcionamento de um
+    relatório.
+
+\pause
+
+-   Note que todo o texto é editável.
+:::
+
+::: column
+\pause
+
+![](botao_4.png){width="290px"}
+:::
+:::
+
+## Estrutura do Rmarkdown no `R`
+
+-   Os documentos são gerados utilizando o pacote `knitr`. Este pacote
+    funciona como um pacote de apoio de `rmarkdown`.
+
+-   *Knit* em inglês significa tricotar ou unir.
+
+-   E é justamente isso que ele faz, ele costura e une todos os
+    elementos que você vier a construir ou programar com `R Markdown`.
+
+-   Se você já quiser gerar um relatório a partir do exemplo apresentado
+    a você ao criar um novo arquivo `.Rmd`
+
+-   Podê fazê-lo clicando no botão *Knit* ![](botao_5.png) na janela do
+    RStudio.
+
+-   Após escolher um nome e salvar seu arquivo `.Rmd`, se você escolheu
+    a opção PDF, você terá um arquivo de extensão `.pdf`.
+
+Faça testes alterando os arquivos de destino: `.html` e `.docx` direto
+no botão *Knit*.
+
+# Cabeçalho
+
+## Cabeçalho
+
+-   No cabeçalho você pode especificar todos os aspectos técnicos de
+    formatação do seu texto em `R Markdown`.
+
+-   Existem diversas opções, mas focaremos nas mais básicas que são as
+    que aparecem na tela neste momento:
+
+    -   `title` contém o título de seu documento;
+
+    -   `author` o seu nome;
+
+    -   `date` a data de geração do documento;
+
+    -   `output` o tipo de documento a ser gerado, se HTML, PDF ou Word.
+
+-   Caso você queira acrescentar um co-autor, use:
+
+```{sh, eval=FALSE, echo=TRUE}
+author:
+
+  - Nome do autor 1
+
+  - Nome do autor 2
+```
+
+## Cabeçalho
+
+-   Para adicionar um subtítulo, basta escrever:
+
+```{sh, eval=FALSE, echo=TRUE}
+title: "Seu Título"
+
+subtitle: "Subtítulo para o relatório"
+```
+
+-   Para não ter que ficar alterando a data manualmente, utilize a
+    função `format()` em conjunto com `Sys.time()`.
+
+-   Note que esse código é passado entre sinais de crase \`\`.
+
+```{sh, eval=FALSE, echo=TRUE}
+date: " `r format(Sys.time(), '%d %B %Y')` "
+```
+
+# Organização no corpo do texto
+
+## Organização no corpo do texto
+
+Os títulos de seções são:
+
+```{sh, eval=FALSE, echo=TRUE}
+# Título
+## Sub-título
+### Sub-sub-título
+```
+
+```{sh, eval=FALSE, echo=TRUE}
+*Este texto aparecerá em itálico.*
+```
+
+*Este texto aparecerá em itálico.*
+
+```{sh, eval=FALSE, echo=TRUE}
+**Este texto aparecerá em negrito.**
+```
+
+**Este texto aparecerá em negrito.**
+
+## Organização no corpo do texto
+
+Notas de rodapé podem ser inseridas no testo utilizando o esquema
+`palavra^[Texto que irá para a nota de rodapé sobre a palavra.]`
+\vspace{0.3cm}
+
+```{=tex}
+\structure{Rmarkdown:}
+\vspace{0.3cm}
+```
+```{sh, eval=FALSE, echo=TRUE}
+Nesse texto vamos inserir uma nota de rodapé sobre a 
+palavra Estatística^[Estatística é a disciplina que 
+consiste na coleta, organização, análise e apresentação de dados.]
+```
+
+\structure{Resultado:}
+
+Nesse texto vamos inserir uma nota de rodapé sobre a palavra
+Estatística[^1]
+
+[^1]: Estatística é a disciplina que consiste na coleta, organização,
+    análise e apresentação de dados.
+
+## Organização no corpo do texto
+
+::: columns
+::: column
+```{=tex}
+\footnotesize
+\structure{Listas não-ordenadas}
+```
+```{sh, eval=FALSE, echo=TRUE}
+- Primeiro item
+- Segundo item
+- Terceiro item
+```
+
+-   Primeiro item
+-   Segundo item
+-   Terceiro item
+
+\vspace{0.3cm}
+
+\structure{Listas não-ordenadas}
+
+```{sh, eval=FALSE, echo=TRUE}
+1. Primeiro item
+2. Segundo item
+3. Terceiro item
+```
+
+1.  Primeiro item
+2.  Segundo item
+3.  Terceiro item
+:::
+
+::: column
+\footnotesize
+
+\structure{Sub-listas}
+
+Utilize 4 espaços para criar uma sub-lista:
+
+```{sh, eval=FALSE, echo=TRUE}
+1. Primeiro item
+	- Um sub-item
+    - Outro sub-item
+2. Segundo item
+3. Terceiro item
+```
+
+1.  Primeiro item
+    -   Um sub-item
+        -   Outro sub-item
+2.  Segundo item
+3.  Terceiro item
+:::
+:::
+
+# Links
+
+## Links
+
+Links para endereços Web podem ser inseridos com `[texto](link)`:
+
+```{sh, eval=FALSE, echo=TRUE}
+O criador do conceito de "literate programming" foi
+[Donald Knuth](https://en.wikipedia.org/wiki/Donald_Knuth).
+```
+
+O criador do conceito de "literate programming" foi [Donald
+Knuth](https://en.wikipedia.org/wiki/Donald_Knuth).
+
+```{sh, eval=FALSE, echo=TRUE}
+Devemos instalar o pacote [knitr](http://yihui.name/knitr) para poder
+usar o R Markdown.
+```
+
+Devemos instalar o pacote [knitr](http://yihui.name/knitr) para poder
+usar o R Markdown.
+
+# Imagens
+
+## Imagens
+
+Para inserir uma imagem, a sintaxe é a mesma de inserir um link, mas com
+uma exclamação (`!`) na frente: `![texto](imagem)`. \vspace{0.3cm}
+
+::: columns
+::: column
+\footnotesize
+
+\structure{Tamanho original:}
+
+```{sh, eval=FALSE, echo=TRUE}
+![Logo do Markdown](RMD_3.png)
+```
+
+![Logo do Markdown](RMD_3.png){width="100px"}
+:::
+
+::: column
+\footnotesize
+
+\structure{Tamanho menor:}
+
+\scriptsize
+
+```{sh, eval=FALSE, echo=TRUE}
+![Logo do Markdown menor](RMD_3.png){width=30px}
+```
+
+![Logo do Markdown](RMD_3.png){width="30px"}
+:::
+:::
+
+<!-- ## Imagens - Link da internet -->
+
+<!-- O link para a imagem pode ser um endereço Web: -->
+
+<!-- ```{sh, eval=FALSE, echo=TRUE} -->
+
+<!-- ![Logo do R](http://developer.r-project.org/Logo/Rlogo-5.png) -->
+
+<!-- ``` -->
+
+# Parágrafo
+
+## Parágrafo
+
+Para criar parágrafos basta pular uma linha:
+
+```{sh, eval=FALSE, echo=TRUE}
+O criador do conceito de "literate programming" foi
+[Donald Knuth](https://en.wikipedia.org/wiki/Donald_Knuth).
+
+Devemos instalar o pacote [knitr](http://yihui.name/knitr) para poder
+usar o R Markdown.
+```
+
+O criador do conceito de "literate programming" foi [Donald
+Knuth](https://en.wikipedia.org/wiki/Donald_Knuth).
+
+Devemos instalar o pacote [knitr](http://yihui.name/knitr) para poder
+usar o R Markdown.
+
+# Códigos
+
+## Códigos
+
+\footnotesize
+
+Para apresentar códigos na própria linha, colocamos o texto entre duas
+crases (``` `` ```):
+
+```{sh, eval=FALSE, echo=TRUE}
+Para gerar números aleatórios de uma distribuição normal no R, use a
+função `rnorm()`.
+```
+
+Para gerar números aleatórios de uma distribuição normal no R, use a
+função `rnorm()`.
+
+Para apresentar blocos de código, coloque o texto entre três crases
+seguidas (```` ``` ````) no início e no final. O bloco
+
+```{sh, eval=FALSE, echo=TRUE}
+ ``
+   x <- rnorm(n = 10, mean = 100, sd = 5)
+   hist(x, main = "")
+ ``
+```
+
+Irá gerar
+
+```{sh, eval=FALSE, echo=TRUE}
+x <- rnorm(n = 10, mean = 100, sd = 5)
+hist(x, main = "")
+```
+
+Note que esse código não será interpretado, ele apenas será mostrado no
+texto.
+
+# Tabelas
+
+## Tabelas
+
+Tabelas podem ser escritas da seguinte forma:
+
+```{sh, eval=FALSE, echo=TRUE}
+Caracter | Permissão
+---------|----------
+`r`      | Permissão de leitura (*read*)
+`w`      | Permissão de escrita (*write*)
+`x`      | Permissão de execução (*execute*)
+`-`      | Permissão desabilitada
+```
+
+Para gerar o seguinte resultado:
+
+| Caracter | Permissão                         |
+|----------|-----------------------------------|
+| `r`      | Permissão de leitura (*read*)     |
+| `w`      | Permissão de escrita (*write*)    |
+| `x`      | Permissão de execução (*execute*) |
+| `-`      | Permissão desabilitada            |
+
+# Equações matemáticas
+
+## Equações matemáticas
+
+\footnotesize
+
+Equações matemáticas podem ser escritas em formato LaTeX. \vspace{0.3cm}
+
+A página HTML resultante irá renderizar as equações através do
+[MathJax]. \vspace{0.3cm}
+
+Equações na própria linha podem ser inseridas entre `$`:
+
+```{sh, eval=FALSE, echo=TRUE}
+Um modelo de regressão linear simples:  $Y = \beta_0 + \beta_1 x + \epsilon$.
+```
+
+Um modelo de regressão linear simples:
+$Y = \beta_0 + \beta_1 x + \epsilon$.
+
+## Equações matemáticas
+
+Equações podem ser exibidas entre `$$` para ficarem centralizadas em uma
+linha própria:
+
+```{sh, eval=FALSE, echo=TRUE}
+$$
+f(x;\mu,\sigma^2) = \frac{1}{\sigma\sqrt{2\pi}}
+e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 }
+$$
+```
+
+$$
+f(x;\mu,\sigma^2) = \frac{1}{\sigma\sqrt{2\pi}}
+e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 }
+$$
+
+# Inserções com execução e outros controles
+
+## Inserções com execução e outros controles
+
+-   Para apresentar seus códigos juntamente com os respectivos outputs
+    (o que incluem gráficos), utilizamos o que chamamos de *chunks*.
+
+\pause
+
+-   *rmarkdown* e sua interação com o RStudio são tão sofisticados que,
+    se você possuir outras linguagens instaladas na sua máquina, você
+    consegue inclusive, alterar a forma de exibição de linguagem `R`
+    para `Python`, por exemplo.
+
+\pause
+
+-   Inicialmente, para criar um *chunk* de código R, você deve utilizar
+    as mesmas crases triplas ```` ``` ```` do exemplo anterior,
+    acompanhadas da anotação `{r}`.
+
+\pause
+
+-   \alert{Não se esqueça de fechar o chunk com as mesmas!}
+
+## Inserções com execução e outros controles
+
+\structure{Exemplo:}
+
+```` ```{r} ````
+
+`x <- 1:10`
+
+`sum(x)`
+
+```` ``` ````
+
+Como resultado, temos agora a impressão do *output* do código anterior:
+
+```{r}
+x <- 1:10
+sum(x)
+```
+
+## Inserções com execução e outros controles
+
+-   Também é possível executar trechos de código inline, no meio dos
+    parágrafos.
+
+-   Para isso, utilizamos: `` ` r sum(x) ` `` \vspace{0.3cm}
+
+```{r, eval=FALSE}
+Por exemplo: A soma do vetor x é `r sum(x)`.
+```
+
+O *output* será: \vspace{0.3cm}
+
+Por exemplo: A soma do vetor x é `r sum(x)`.
+
+# Principais opções de chunk
+
+## Principais opções de chunk
+
+As principais opções de *chunk* são:
+
+-   results: especifica como, e se, serão mostrados os resultados do
+    chunk;
+    -   opções:
+        -   markup (default): exibe os resultados normalmente
+        -   hide: não exibe os outputs no relatório final
+        -   hold: exibe os resultados apenas ao final do relatório
+        -   asis: não reformata os resultados, exibindo (útil quando os
+            outputs são códigos HTML, por exemplo)
+-   echo: especifica se o código do chunk deve será exibido
+    -   opções:
+        -   TRUE (default): exibe os códigos acima do output
+        -   FALSE: exibe apenas o output gerado pelo chunk
+-   eval: especifica se o chunk será executado ou não
+    -   opções:
+        -   TRUE (default): executa o chunk
+        -   FALSE: não executa o chunk
+
+## Principais opções de chunk
+
+-   message e warning: define se as mensagens e demais avisos gerados
+    durante a excução do código -opções:
+
+    -   TRUE (default): exibe mensagens e avisos gerados durante a
+        excução do chunk
+    -   FALSE: suprime a exibição de mensagens e avisos.
+
+-   fig.cap: especifica uma descrição para a figura gerada no *chunk*
+
+-   fig.align: define o alinhamento da figura gerada no *chunk*
+
+    -   opções:
+        -   center (default): alinhamento no centro do documento
+        -   left: alinhamento à esquerda
+        -   right: alinhamento à direita
+
+-   fig.height e fig.width: altura e a largura da figura (em pol)
+    *default* é tamanho 7.
+
+## Principais opções de chunk
+
+-   Se nada for especificado para uma determinada opção, as
+    configurações *default* são utlizadas.
+
+-   Essas opções devem ser passadas no cabeçalho dos chunks, ao lado da
+    letra r e dentro de das chaves {}, por exemplo:
+
+```` ```{r, echo=FALSE, message=FALSE} ````
+
+`library(dplyr)`
+
+`x <- 1:10`
+
+`x %>% sum()`
+
+```` ``` ````
+
+-   Você pode também atribuir nomes aos seus chunks.
+
+```` ```{r nome_do_chunk, opções}... ````
+
+## Exemplo - banco de dados `cars`
+
+::: columns
+::: column
+Resumo descritivo:
+
+```{r cars, comment=""}
+summary(cars)
+```
+:::
+
+::: column
+Podemos incluir gráficos também:
+
+```{r pressure}
+plot(pressure)
+```
+:::
+:::
