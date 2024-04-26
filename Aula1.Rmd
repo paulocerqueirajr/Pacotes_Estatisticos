@@ -1,0 +1,238 @@
+---
+title: "Aula 2"
+author: "Paulo C. Jr"
+date: "2024-04-12"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment="")
+```
+
+## Equações matemáticas
+
+-   Um exemplo de equação matemática $y=ax+b$.
+
+-   Exemplo de somatório $\sum_{i=1}^{n}X_{i}=X_{1}+X_{2}+\dots+X_{n}$.
+
+-   Usando o `dots` dentro de matrizes:
+
+\begin{matrix}
+a_{11}  & a_{12}  &  \dots & a_{1n}\\
+a_{21}  & a_{22}  &  \dots & a_{2n}\\
+\vdots  & \vdots  &   \ddots & \vdots\\
+a_{n1}  & a_{n2}  &  \dots & a_{nn}\\
+\end{matrix}
+
+
+
+*   Um exemplo usando equações:
+
+   -   Usando só os cifrões:
+
+
+```         
+$$y_{i}=\beta_{0}+\beta_{1}X_{i}+\epsilon_{i}.$$
+```
+
+$$y_{i}=\beta_{0}+\beta_{1}X_{i}+\epsilon_{i}.$$
+
+   
+   -  Usando o ambiente `equation`
+
+
+```         
+\begin{equation}
+y_{i}=\beta_{0}+\beta_{1}X_{i}+\epsilon_{i}
+\end{equation}
+```
+
+   - Exemplo de função de log-verossimilhança:
+
+$$\ell(\theta| x)=\sum\limits_{i=1}^{n} \log[f(x_{i}\mid \theta)]$$
+
+
+    
+## Introdução ao `R`
+
+### Atribuições
+
+
+Podemos atribuir um valor a um objeto `x`. A forma de atribuir valores em `R`, se dá usando `<-` ou `=`. Exemplo,
+
+Usando a atribuição `<-`, temos
+
+```{r}
+x <- 1
+x
+```
+
+No outro caso,
+
+```{r}
+x = 1
+x
+```
+
+
+### Variáveis 
+
+As variáveis são os nomes dados aos objetos, como por exemlo, `x`, `y`, `numero_respostas`, etc.
+
+
+```{r}
+id_faest <- c(35,20,20,23,19,19,20,20,21,20)
+id_faest
+
+```
+
+
+em que `c` representa uma concatenação de objetos. Logo, forma um vetor de elementos.
+
+
+### Caracteres:
+
+Os textos dentro do `R` são considerados usando aspas `" "` ou `' '`.
+
+Por exemplo,
+
+```{r}
+genero <- c("Masculino","Feminino","Feminino",  "Masculino", "Masculino","Feminino","Feminino","Feminino",  "Masculino", "Masculino")
+genero
+```
+
+
+Para verificar a classe das variáveis declaradas usamos a função `str`:
+
+```{r}
+str(id_faest)
+str(genero)
+```
+
+### Vetores
+
+Vetor é uma sequência de valores numérico ou de caracteres.
+
+
+
+* Exemplo 1:
+
+
+```{r}
+y <- 0:10
+y
+```
+
+
+* Exemplo 2 (função `seq`):
+
+
+```{r}
+y <- seq(0,10)
+y
+```
+
+
+```{r}
+y <- seq(0,10, by=2)
+y
+```
+
+
+```{r}
+y <- seq(0,10, length.out=20)
+y
+```
+
+
+* Exemplo 3 (função `rep`):
+
+
+```{r}
+y <- seq(0,10, by=2)
+z <- rep(y,2)
+z
+```
+
+## Matrizes:
+
+Podemos criar matrizes do seguinte formato:
+
+\begin{matrix}
+a_{11}  & a_{12}  &  \dots & a_{1n}\\
+a_{21}  & a_{22}  &  \dots & a_{2n}\\
+\vdots  & \vdots  &   \ddots & \vdots\\
+a_{n1}  & a_{n2}  &  \dots & a_{nn}\\
+\end{matrix}
+
+
+* Exemplo:
+
+```{r}
+A <- matrix(data=c(1,2,2,1))
+A
+```
+
+
+```{r}
+A <- matrix(data=c(1,2,2,1), nrow = 2, ncol = 2)
+A
+```
+
+Exemplos de operações com matrizes:
+
+
+```{r}
+B <- matrix(data=c(2,1,1,2), nrow = 2, ncol = 2)
+A # Matriz A
+B # Matriz B
+A+B # Soma de  A e B
+A*B # Produto elemento-elemento de  A e B
+A%*%B # Produto matricial de  A e B
+A/B # Razão elemento-elemento de  A e B
+A%*%solve(B) # Razão de  A e B 
+```
+
+
+### Arrays
+
+
+Os arrays é um conjunto multidimensional de matrizes.
+
+
+* Exemplo:
+
+
+```{r}
+Y <- array(data = 1:10, dim = c(2, 2, 3) )
+Y
+```
+
+### Listas:
+
+
+Uma lista é um conjunto multidimensional qualquer tipo de objeto do `R`.
+
+```{r}
+W <- list( y=seq(1,20, by=2), genero = c("Masculino","Feminino","Feminino",  "Masculino", "Masculino", "Feminino"), A, Y)
+W
+```
+
+
+### Dataframes:
+
+Mais utilizado para bancos de dados:
+
+```{r}
+alt.faest <- c(1.63, 1.83, 1.75, 1.85, 1.60, 1.61, 1.70, 1.70, 1.75, 1.51)
+
+dados <- data.frame(id_faest, genero, alt.faest)
+dados
+
+```
+
+
+
+
