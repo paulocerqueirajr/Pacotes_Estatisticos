@@ -1862,7 +1862,236 @@ dados</code></pre>
 {"columns":[{"label":["id_faest"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["genero"],"name":[2],"type":["chr"],"align":["left"]},{"label":["alt.faest"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"35","2":"Masculino","3":"1.63"},{"1":"20","2":"Feminino","3":"1.83"},{"1":"20","2":"Feminino","3":"1.75"},{"1":"23","2":"Masculino","3":"1.85"},{"1":"19","2":"Masculino","3":"1.60"},{"1":"19","2":"Feminino","3":"1.61"},{"1":"20","2":"Feminino","3":"1.70"},{"1":"20","2":"Feminino","3":"1.70"},{"1":"21","2":"Masculino","3":"1.75"},{"1":"20","2":"Masculino","3":"1.51"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<pre class="r"><code>dados$genero</code></pre>
+<pre><code> [1] &quot;Masculino&quot; &quot;Feminino&quot;  &quot;Feminino&quot;  &quot;Masculino&quot; &quot;Masculino&quot; &quot;Feminino&quot; 
+ [7] &quot;Feminino&quot;  &quot;Feminino&quot;  &quot;Masculino&quot; &quot;Masculino&quot;</code></pre>
 </div>
+</div>
+<div id="indexação" class="section level2">
+<h2>Indexação</h2>
+<ul>
+<li>Vetor:</li>
+</ul>
+<p>A indexação para vetores é feita da segunite forma <code>x[i]</code>,
+que significa que temos o valor de <code>x</code> na posição
+<code>i</code>. Por exemplo:</p>
+<pre class="r"><code>#id_faest &lt;- c(....)
+
+## O primeiro valor do vetor idade
+i &lt;- 1
+id_faest[i]</code></pre>
+<pre><code>[1] 35</code></pre>
+<pre class="r"><code># Qual a posição do menor valor?
+j &lt;- which.min(id_faest)
+
+# Qual a posição do maior valor?
+k &lt;- which.max(id_faest)</code></pre>
+<p>Queremos saber quais são o menor e o maior valor:</p>
+<pre class="r"><code>a &lt;- c(j, k) # vetor com a posição do min e do máximo
+a</code></pre>
+<pre><code>[1] 5 1</code></pre>
+<pre class="r"><code>id_faest[a]</code></pre>
+<pre><code>[1] 19 35</code></pre>
+<ul>
+<li>Matrizes:</li>
+</ul>
+<p>A indexação para matrizes é feita da seguinte forma
+<code>A[i,j]</code>, que significa que temos o valor de <code>A</code>
+na linha <code>i</code> e coluna <code>j</code>. Por exemplo:</p>
+<pre class="r"><code>A</code></pre>
+<pre><code>     [,1] [,2]
+[1,]    1    2
+[2,]    2    1</code></pre>
+<pre class="r"><code>#Elemento na linha 1 e coluna 2:
+i &lt;- 1
+j &lt;- 2
+A[i,j]</code></pre>
+<pre><code>[1] 2</code></pre>
+<ul>
+<li>Arrays:</li>
+</ul>
+<p>A indexação para <em>arrays</em> é feita da seguinte forma
+<code>Y[i,j,k]</code>, que significa que temos o valor de <code>Y</code>
+na linha <code>i</code>, coluna <code>j</code> e dimensão
+<code>k</code>. Por exemplo:</p>
+<pre class="r"><code>Y</code></pre>
+<pre><code>, , 1
+
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+
+, , 2
+
+     [,1] [,2]
+[1,]    5    7
+[2,]    6    8
+
+, , 3
+
+     [,1] [,2]
+[1,]    9    1
+[2,]   10    2</code></pre>
+<pre class="r"><code>#Elemento na linha 1 e coluna 2, na dimensão 2:
+i &lt;- 1
+j &lt;- 2
+k &lt;- 2
+Y[i, j, k]</code></pre>
+<pre><code>[1] 7</code></pre>
+<ul>
+<li>Listas:</li>
+</ul>
+<p>A indexação para listas é feita da seguinte forma
+<code>V[[i]]</code>, que significa que temos a dimensão <code>i</code>
+da lista. Por exemplo:</p>
+<pre class="r"><code>W</code></pre>
+<pre><code>$y
+ [1]  1  3  5  7  9 11 13 15 17 19
+
+$genero
+[1] &quot;Masculino&quot; &quot;Feminino&quot;  &quot;Feminino&quot;  &quot;Masculino&quot; &quot;Masculino&quot; &quot;Feminino&quot; 
+
+[[3]]
+     [,1] [,2]
+[1,]    1    2
+[2,]    2    1
+
+[[4]]
+, , 1
+
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+
+, , 2
+
+     [,1] [,2]
+[1,]    5    7
+[2,]    6    8
+
+, , 3
+
+     [,1] [,2]
+[1,]    9    1
+[2,]   10    2</code></pre>
+<pre class="r"><code># Consultando dentro da lista
+# Vetor:
+W[[1]][c(1,2,3)]</code></pre>
+<pre><code>[1] 1 3 5</code></pre>
+<pre class="r"><code># Vetor caracteres:
+W[[2]][1]</code></pre>
+<pre><code>[1] &quot;Masculino&quot;</code></pre>
+<pre class="r"><code># Matriz:
+W[[3]][1,]</code></pre>
+<pre><code>[1] 1 2</code></pre>
+<pre class="r"><code># Array:
+W[[4]][1,,2]</code></pre>
+<pre><code>[1] 5 7</code></pre>
+</div>
+<div id="programação-básica" class="section level2">
+<h2>Programação Básica</h2>
+<p>Veremos alguma estruturas de contole.</p>
+<div id="condição" class="section level3">
+<h3>Condição:</h3>
+<ul>
+<li><code>IF(){}ELSE(){}</code>:</li>
+</ul>
+<p>Usaremos o exemplo de uma equação do 2 grau, em que</p>
+<p><span class="math display">\[a_1 x^2 + a_2 x + a_3 =0.\]</span></p>
+<p>Definindo os coeficientes, temos:</p>
+<pre class="r"><code>a1 &lt;- 1
+a2 &lt;- 2
+a3 &lt;- 1
+
+delta &lt;- a2^2 - 4*a1*a3
+
+if(delta &gt; 0){
+  x1 &lt;- (-a2+sqrt(delta))/2*a1
+  x2 &lt;- (-a2-sqrt(delta))/2*a1
+  cat(&quot;As raízes reais são &quot;, x1, &quot;e&quot;, x2, &quot;.&quot;, sep=&quot; &quot;)
+}else{
+    if(delta == 0){
+      x1 &lt;- -a2/2*a1
+      cat(&quot;A raíz real é &quot;, x1, &quot;.&quot;, sep=&quot; &quot;)
+    }else{
+      cat(&quot;Não há raíz real.&quot;, sep=&quot; &quot;)
+    } 
+}</code></pre>
+<pre><code>A raíz real é  -1 .</code></pre>
+<ul>
+<li><code>ifelse</code>: mudanção de elementos dentro de um objeto
+baseado em uma condição.</li>
+</ul>
+<p>Para o exemplo com a variável gênero:</p>
+<pre class="r"><code>genero</code></pre>
+<pre><code> [1] &quot;Masculino&quot; &quot;Feminino&quot;  &quot;Feminino&quot;  &quot;Masculino&quot; &quot;Masculino&quot; &quot;Feminino&quot; 
+ [7] &quot;Feminino&quot;  &quot;Feminino&quot;  &quot;Masculino&quot; &quot;Masculino&quot;</code></pre>
+<pre class="r"><code>genero_cod &lt;- ifelse( genero==&quot;Masculino&quot;, 1, 0)
+genero_cod</code></pre>
+<pre><code> [1] 1 0 0 1 1 0 0 0 1 1</code></pre>
+<p>Para o exemplo com a variável idade:</p>
+<pre class="r"><code>id_faest</code></pre>
+<pre><code> [1] 35 20 20 23 19 19 20 20 21 20</code></pre>
+<pre class="r"><code>id_cod &lt;- ifelse( id_faest&lt;20, &quot;Novinho(a)&quot;, &quot;Velinho(a)&quot;)
+id_cod</code></pre>
+<pre><code> [1] &quot;Velinho(a)&quot; &quot;Velinho(a)&quot; &quot;Velinho(a)&quot; &quot;Velinho(a)&quot; &quot;Novinho(a)&quot;
+ [6] &quot;Novinho(a)&quot; &quot;Velinho(a)&quot; &quot;Velinho(a)&quot; &quot;Velinho(a)&quot; &quot;Velinho(a)&quot;</code></pre>
+</div>
+</div>
+<div id="loops" class="section level2">
+<h2>Loops:</h2>
+<ul>
+<li>Exemplo da soma:</li>
+</ul>
+<pre class="r"><code>sum(id_faest)</code></pre>
+<pre><code>[1] 217</code></pre>
+<p>Somando na mão, que não devemos fazer!</p>
+<pre><code>id_faest[1]+id_faest[2]+id_faest[3]+...</code></pre>
+<ul>
+<li>O <code>for</code></li>
+</ul>
+<p>É um tipo de <code>loop</code> em que:</p>
+<pre><code>for(var in vet){
+
+}</code></pre>
+<p>No caso da soma, temos</p>
+<pre class="r"><code>id_faest</code></pre>
+<pre><code> [1] 35 20 20 23 19 19 20 20 21 20</code></pre>
+<pre class="r"><code>soma &lt;- 0
+
+for(i in id_faest){
+  soma &lt;- soma + i
+}
+soma</code></pre>
+<pre><code>[1] 217</code></pre>
+<p>Usando indaxação:</p>
+<pre class="r"><code>id_faest</code></pre>
+<pre><code> [1] 35 20 20 23 19 19 20 20 21 20</code></pre>
+<pre class="r"><code>soma &lt;- 0
+n &lt;- length(id_faest)
+for(i in 1:n){
+  soma &lt;- soma + id_faest[i]
+}
+soma</code></pre>
+<pre><code>[1] 217</code></pre>
+<ul>
+<li>Loop <code>while</code>:</li>
+</ul>
+<p>É um tipo de <code>loop</code> em que:</p>
+<pre><code>while(cond){
+
+}</code></pre>
+<p>Usando o exemplo da soma. Precisamos somar todos os <code>n</code>
+elementos. Logo,</p>
+<pre class="r"><code>n &lt;- length(id_faest)
+soma &lt;- 0
+i &lt;- 1 # Primeiro individuo
+while(i&lt;=n){
+  soma &lt;- soma + id_faest[i]
+  i &lt;- i+1
+}
+soma</code></pre>
+<pre><code>[1] 217</code></pre>
 </div>
 
 

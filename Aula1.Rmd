@@ -230,8 +230,279 @@ alt.faest <- c(1.63, 1.83, 1.75, 1.85, 1.60, 1.61, 1.70, 1.70, 1.75, 1.51)
 
 dados <- data.frame(id_faest, genero, alt.faest)
 dados
+dados$genero
 
 ```
+
+
+## Indexação
+
+* Vetor:
+
+A indexação para vetores é feita da segunite forma `x[i]`, que significa que temos o valor de `x` na posição `i`. Por exemplo:
+
+
+```{r}
+
+#id_faest <- c(....)
+
+## O primeiro valor do vetor idade
+i <- 1
+id_faest[i]
+
+# Qual a posição do menor valor?
+j <- which.min(id_faest)
+
+# Qual a posição do maior valor?
+k <- which.max(id_faest)
+
+```
+
+Queremos saber quais são o menor e o maior valor:
+
+```{r}
+a <- c(j, k) # vetor com a posição do min e do máximo
+a
+id_faest[a]
+```
+
+
+* Matrizes:
+
+A indexação para matrizes é feita da seguinte forma `A[i,j]`, que significa que temos o valor de `A` na linha `i` e coluna `j`. Por exemplo:
+
+
+```{r}
+A
+
+#Elemento na linha 1 e coluna 2:
+i <- 1
+j <- 2
+A[i,j]
+```
+
+
+* Arrays:
+
+A indexação para *arrays* é feita da seguinte forma `Y[i,j,k]`, que significa que temos o valor de `Y` na linha `i`, coluna `j` e dimensão `k`. Por exemplo:
+
+
+```{r}
+Y
+
+#Elemento na linha 1 e coluna 2, na dimensão 2:
+i <- 1
+j <- 2
+k <- 2
+Y[i, j, k]
+```
+
+
+* Listas:
+
+A indexação para listas é feita da seguinte forma `V[[i]]`, que significa que temos a dimensão `i` da lista. Por exemplo:
+
+
+```{r}
+W
+
+# Consultando dentro da lista
+# Vetor:
+W[[1]][c(1,2,3)]
+
+# Vetor caracteres:
+W[[2]][1]
+
+# Matriz:
+W[[3]][1,]
+
+# Array:
+W[[4]][1,,2]
+
+
+```
+
+
+## Programação Básica
+
+
+Veremos alguma estruturas de contole.
+
+### Condição:
+
+
+
+* `IF(){}ELSE(){}`:
+
+Usaremos o exemplo de uma equação do 2 grau, em que
+
+$$a_1 x^2 + a_2 x + a_3 =0.$$
+
+Definindo os coeficientes, temos:
+
+```{r}
+a1 <- 1
+a2 <- 2
+a3 <- 1
+
+delta <- a2^2 - 4*a1*a3
+
+if(delta > 0){
+  x1 <- (-a2+sqrt(delta))/2*a1
+  x2 <- (-a2-sqrt(delta))/2*a1
+  cat("As raízes reais são ", x1, "e", x2, ".", sep=" ")
+}else{
+    if(delta == 0){
+      x1 <- -a2/2*a1
+      cat("A raíz real é ", x1, ".", sep=" ")
+    }else{
+      cat("Não há raíz real.", sep=" ")
+    } 
+}
+
+```
+
+
+* `ifelse`: mudanção de elementos dentro de um objeto baseado em uma condição.
+
+Para o exemplo com a variável gênero:
+
+```{r}
+genero
+genero_cod <- ifelse( genero=="Masculino", 1, 0)
+genero_cod
+```
+
+Para o exemplo com a variável idade:
+
+
+```{r}
+id_faest
+id_cod <- ifelse( id_faest<20, "Novinho(a)", "Velinho(a)")
+id_cod
+```
+
+
+
+## Loops:
+
+* Exemplo da soma:
+
+
+```{r}
+sum(id_faest)
+```
+
+Somando na mão, que não devemos fazer!
+
+```
+id_faest[1]+id_faest[2]+id_faest[3]+...
+```
+
+
+* O `for`
+
+É um tipo de `loop` em que:
+
+```
+for(var in vet){
+
+}
+```
+
+No caso da soma, temos
+
+```{r}
+id_faest
+soma <- 0
+
+for(i in id_faest){
+  soma <- soma + i
+}
+soma
+```
+
+Usando indaxação:
+
+```{r}
+id_faest
+soma <- 0
+n <- length(id_faest)
+for(i in 1:n){
+  soma <- soma + id_faest[i]
+}
+soma
+```
+
+
+* Loop `while`:
+
+
+É um tipo de `loop` em que:
+
+
+```
+while(cond){
+
+}
+```
+
+Usando o exemplo da soma. Precisamos somar todos os `n` elementos. Logo,
+
+
+```{r}
+n <- length(id_faest)
+soma <- 0
+i <- 1 # Primeiro individuo
+while(i<=n){
+  soma <- soma + id_faest[i]
+  i <- i+1
+}
+soma
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
