@@ -464,6 +464,88 @@ soma
 
 
 
+## Funções
+
+
+Temos como exemplo a função `sum()` que calcula a soma dos elementos de um vetor. Podemos criar nossas próprias funções usando `function(arg1, arg2, ...){ expressões da função  }`.
+
+
+* Exemplo da soma:
+
+```{r}
+
+soma <- function(x=x, remove.na=FALSE){
+  if(remove.na== TRUE ){
+    x <- x[ is.na(x) == FALSE]
+  }
+  
+  n <- length(x)
+  somax <- 0
+  for(i in 1:n){
+    somax <- somax+x[i]
+  }
+  return(somax) # retorna o valor da soma
+}
+
+## Somando a idade sum():
+
+sum(id_faest)
+
+## Somando a idade soma():
+
+soma(id_faest)
+
+```
+
+
+* Exemplo com `NA`:
+
+No `R` o `NA` representa o *not avaliable* (não disponível). Assim, seja o segunite vetor:
+
+
+```{r}
+teste <- c(id_faest, NA) 
+teste
+
+is.na(teste)
+
+teste[is.na(teste)==FALSE]
+```
+
+
+
+
+* Realizando a soma sem remover:
+
+
+```{r}
+soma(teste)
+```
+
+
+* Realizando a soma removendo:
+
+
+```{r}
+soma(x=teste, remove.na = TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Leitura de dados
+
+
 
 
 

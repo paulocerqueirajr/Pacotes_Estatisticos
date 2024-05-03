@@ -2093,6 +2093,61 @@ while(i&lt;=n){
 soma</code></pre>
 <pre><code>[1] 217</code></pre>
 </div>
+<div id="funções" class="section level2">
+<h2>Funções</h2>
+<p>Temos como exemplo a função <code>sum()</code> que calcula a soma dos
+elementos de um vetor. Podemos criar nossas próprias funções usando
+<code>function(arg1, arg2, ...){ expressões da função  }</code>.</p>
+<ul>
+<li>Exemplo da soma:</li>
+</ul>
+<pre class="r"><code>soma &lt;- function(x=x, remove.na=FALSE){
+  if(remove.na== TRUE ){
+    x &lt;- x[ is.na(x) == FALSE]
+  }
+  
+  n &lt;- length(x)
+  somax &lt;- 0
+  for(i in 1:n){
+    somax &lt;- somax+x[i]
+  }
+  return(somax) # retorna o valor da soma
+}
+
+## Somando a idade sum():
+
+sum(id_faest)</code></pre>
+<pre><code>[1] 217</code></pre>
+<pre class="r"><code>## Somando a idade soma():
+
+soma(id_faest)</code></pre>
+<pre><code>[1] 217</code></pre>
+<ul>
+<li>Exemplo com <code>NA</code>:</li>
+</ul>
+<p>No <code>R</code> o <code>NA</code> representa o <em>not
+avaliable</em> (não disponível). Assim, seja o segunite vetor:</p>
+<pre class="r"><code>teste &lt;- c(id_faest, NA) 
+teste</code></pre>
+<pre><code> [1] 35 20 20 23 19 19 20 20 21 20 NA</code></pre>
+<pre class="r"><code>is.na(teste)</code></pre>
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE</code></pre>
+<pre class="r"><code>teste[is.na(teste)==FALSE]</code></pre>
+<pre><code> [1] 35 20 20 23 19 19 20 20 21 20</code></pre>
+<ul>
+<li>Realizando a soma sem remover:</li>
+</ul>
+<pre class="r"><code>soma(teste)</code></pre>
+<pre><code>[1] NA</code></pre>
+<ul>
+<li>Realizando a soma removendo:</li>
+</ul>
+<pre class="r"><code>soma(x=teste, remove.na = TRUE)</code></pre>
+<pre><code>[1] 217</code></pre>
+</div>
+<div id="leitura-de-dados" class="section level2">
+<h2>Leitura de dados</h2>
+</div>
 
 
 
