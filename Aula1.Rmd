@@ -531,8 +531,57 @@ soma(x=teste, remove.na = TRUE)
 ```
 
 
+* Exemplo com a função variância:
 
 
+Sabemos que a variância é definida por
+
+
+$$S^{2}=\dfrac{1}{n-1}\sum\limits_{i=1}^{n}(x_{i}-\overline{x})^2.$$
+
+No `R`, temos inicialmente que criar a função de média. Logo,
+
+```{r}
+media <- function(x=x, remove.na=FALSE){
+  if(remove.na== TRUE ){
+    x <- x[ is.na(x) == FALSE]
+  }
+  
+  n <- length(x)
+  somax <- 0
+  for(i in 1:n){
+    somax <- somax+x[i]
+  }
+  return(somax/n) # retorna o valor da media
+}
+```
+
+
+Assim a função da variância é dada por:
+
+
+
+```{r}
+variancia <- function(x=x, remove.na=FALSE){
+  if(remove.na== TRUE ){
+    x <- x[ is.na(x) == FALSE]
+  }
+  n     <- length(x)
+  difx  <- (x-media(x=x))^2
+  varx  <- soma(difx)/(n-1)
+  
+  return(varx)
+  
+}  
+```
+
+Calculando a variância para o vetor `teste`, temos
+
+
+```{r}
+variancia(x=teste, remove.na = TRUE)
+var(teste, na.rm = TRUE)
+```
 
 
 

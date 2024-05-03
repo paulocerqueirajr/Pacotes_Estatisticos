@@ -2144,6 +2144,42 @@ teste</code></pre>
 </ul>
 <pre class="r"><code>soma(x=teste, remove.na = TRUE)</code></pre>
 <pre><code>[1] 217</code></pre>
+<ul>
+<li>Exemplo com a função variância:</li>
+</ul>
+<p>Sabemos que a variância é definida por</p>
+<p><span class="math display">\[S^{2}=\dfrac{1}{n-1}\sum\limits_{i=1}^{n}(x_{i}-\overline{x})^2.\]</span></p>
+<p>No <code>R</code>, temos inicialmente que criar a função de média.
+Logo,</p>
+<pre class="r"><code>media &lt;- function(x=x, remove.na=FALSE){
+  if(remove.na== TRUE ){
+    x &lt;- x[ is.na(x) == FALSE]
+  }
+  
+  n &lt;- length(x)
+  somax &lt;- 0
+  for(i in 1:n){
+    somax &lt;- somax+x[i]
+  }
+  return(somax/n) # retorna o valor da media
+}</code></pre>
+<p>Assim a função da variância é dada por:</p>
+<pre class="r"><code>variancia &lt;- function(x=x, remove.na=FALSE){
+  if(remove.na== TRUE ){
+    x &lt;- x[ is.na(x) == FALSE]
+  }
+  n     &lt;- length(x)
+  difx  &lt;- (x-media(x=x))^2
+  varx  &lt;- soma(difx)/(n-1)
+  
+  return(varx)
+  
+}  </code></pre>
+<p>Calculando a variância para o vetor <code>teste</code>, temos</p>
+<pre class="r"><code>variancia(x=teste, remove.na = TRUE)</code></pre>
+<pre><code>[1] 23.12222</code></pre>
+<pre class="r"><code>var(teste, na.rm = TRUE)</code></pre>
+<pre><code>[1] 23.12222</code></pre>
 </div>
 <div id="leitura-de-dados" class="section level2">
 <h2>Leitura de dados</h2>
