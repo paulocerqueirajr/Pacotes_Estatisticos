@@ -585,16 +585,62 @@ var(teste, na.rm = TRUE)
 
 
 
+## Leitura de bases de dados:
+
+
+* Aqruivo de texto `.txt`:
+
+A função para este caso é a `read.table()`. Para os dados `banco_aula.txt`, temos:
+
+
+```{r}
+
+dados.txt <- read.table(file="banco_aula.txt", header = TRUE, sep="",
+                        dec =",")
+dados.txt
+```
+
+
+* Aqruivo de texto `.csv`:
+
+A função para este caso é a `read.csv()`. Para os dados `banco_aula.csv`, temos:
+
+
+```{r}
+
+dados.csv <- read.csv(file="banco_aula.csv", header = TRUE, sep=";",
+                        dec =",")
+dados.csv
+```
 
 
 
+* Arquivo do excel `.xlsx`
+
+Para a leitura dos dados vamos precisar do pacote `readxl`. No console, use `install.packages("readxl")` para instalar, caso não tenha feito isso.
+
+```{r}
+require(readxl)
+dados.xlsx <- read_xlsx(path = "banco_aula.xlsx", sheet = 1)
+dados.xlsx
+```
+
+## Gráficos:
 
 
+A funação mais simples para qualquer gráfico é `plot()`.
 
 
-## Leitura de dados
+* Exemplo com os `dados_aula.xlsx`:
 
 
+```{r}
+par(mfrow=c(1,2))
+plot(dados.xlsx$Idade, xlab="Indivíduos",
+     ylab="Idade", main="Exempo 1.", sub="Gráfico da idade.")
+plot(dados.xlsx$Idade, dados.xlsx$Altura, xlab="Idade",
+     ylab="Altura", main="Exempo 1.", sub="Gráfico da idade pela altura")
+```
 
 
 
