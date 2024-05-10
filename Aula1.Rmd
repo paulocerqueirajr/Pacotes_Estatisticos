@@ -19,19 +19,17 @@ knitr::opts_chunk$set(echo = TRUE, comment="")
 
 -   Usando o `dots` dentro de matrizes:
 
+```{=tex}
 \begin{matrix}
 a_{11}  & a_{12}  &  \dots & a_{1n}\\
 a_{21}  & a_{22}  &  \dots & a_{2n}\\
 \vdots  & \vdots  &   \ddots & \vdots\\
 a_{n1}  & a_{n2}  &  \dots & a_{nn}\\
 \end{matrix}
+```
+-   Um exemplo usando equações:
 
-
-
-*   Um exemplo usando equações:
-
-   -   Usando só os cifrões:
-
+-   Usando só os cifrões:
 
 ```         
 $$y_{i}=\beta_{0}+\beta_{1}X_{i}+\epsilon_{i}.$$
@@ -39,9 +37,7 @@ $$y_{i}=\beta_{0}+\beta_{1}X_{i}+\epsilon_{i}.$$
 
 $$y_{i}=\beta_{0}+\beta_{1}X_{i}+\epsilon_{i}.$$
 
-   
-   -  Usando o ambiente `equation`
-
+-   Usando o ambiente `equation`
 
 ```         
 \begin{equation}
@@ -49,16 +45,13 @@ y_{i}=\beta_{0}+\beta_{1}X_{i}+\epsilon_{i}
 \end{equation}
 ```
 
-   - Exemplo de função de log-verossimilhança:
+-   Exemplo de função de log-verossimilhança:
 
 $$\ell(\theta| x)=\sum\limits_{i=1}^{n} \log[f(x_{i}\mid \theta)]$$
 
-
-    
 ## Introdução ao `R`
 
 ### Atribuições
-
 
 Podemos atribuir um valor a um objeto `x`. A forma de atribuir valores em `R`, se dá usando `<-` ou `=`. Exemplo,
 
@@ -76,11 +69,9 @@ x = 1
 x
 ```
 
-
-### Variáveis 
+### Variáveis
 
 As variáveis são os nomes dados aos objetos, como por exemlo, `x`, `y`, `numero_respostas`, etc.
-
 
 ```{r}
 id_faest <- c(35,20,20,23,19,19,20,20,21,20)
@@ -88,9 +79,7 @@ id_faest
 
 ```
 
-
 em que `c` representa uma concatenação de objetos. Logo, forma um vetor de elementos.
-
 
 ### Caracteres:
 
@@ -103,7 +92,6 @@ genero <- c("Masculino","Feminino","Feminino",  "Masculino", "Masculino","Femini
 genero
 ```
 
-
 Para verificar a classe das variáveis declaradas usamos a função `str`:
 
 ```{r}
@@ -115,40 +103,31 @@ str(genero)
 
 Vetor é uma sequência de valores numérico ou de caracteres.
 
-
-
-* Exemplo 1:
-
+-   Exemplo 1:
 
 ```{r}
 y <- 0:10
 y
 ```
 
-
-* Exemplo 2 (função `seq`):
-
+-   Exemplo 2 (função `seq`):
 
 ```{r}
 y <- seq(0,10)
 y
 ```
 
-
 ```{r}
 y <- seq(0,10, by=2)
 y
 ```
-
 
 ```{r}
 y <- seq(0,10, length.out=20)
 y
 ```
 
-
-* Exemplo 3 (função `rep`):
-
+-   Exemplo 3 (função `rep`):
 
 ```{r}
 y <- seq(0,10, by=2)
@@ -160,21 +139,20 @@ z
 
 Podemos criar matrizes do seguinte formato:
 
+```{=tex}
 \begin{matrix}
 a_{11}  & a_{12}  &  \dots & a_{1n}\\
 a_{21}  & a_{22}  &  \dots & a_{2n}\\
 \vdots  & \vdots  &   \ddots & \vdots\\
 a_{n1}  & a_{n2}  &  \dots & a_{nn}\\
 \end{matrix}
-
-
-* Exemplo:
+```
+-   Exemplo:
 
 ```{r}
 A <- matrix(data=c(1,2,2,1))
 A
 ```
-
 
 ```{r}
 A <- matrix(data=c(1,2,2,1), nrow = 2, ncol = 2)
@@ -182,7 +160,6 @@ A
 ```
 
 Exemplos de operações com matrizes:
-
 
 ```{r}
 B <- matrix(data=c(2,1,1,2), nrow = 2, ncol = 2)
@@ -195,15 +172,11 @@ A/B # Razão elemento-elemento de  A e B
 A%*%solve(B) # Razão de  A e B 
 ```
 
-
 ### Arrays
-
 
 Os arrays é um conjunto multidimensional de matrizes.
 
-
-* Exemplo:
-
+-   Exemplo:
 
 ```{r}
 Y <- array(data = 1:10, dim = c(2, 2, 3) )
@@ -212,14 +185,12 @@ Y
 
 ### Listas:
 
-
 Uma lista é um conjunto multidimensional qualquer tipo de objeto do `R`.
 
 ```{r}
 W <- list( y=seq(1,20, by=2), genero = c("Masculino","Feminino","Feminino",  "Masculino", "Masculino", "Feminino"), A, Y)
 W
 ```
-
 
 ### Dataframes:
 
@@ -234,13 +205,11 @@ dados$genero
 
 ```
 
-
 ## Indexação
 
-* Vetor:
+-   Vetor:
 
 A indexação para vetores é feita da segunite forma `x[i]`, que significa que temos o valor de `x` na posição `i`. Por exemplo:
-
 
 ```{r}
 
@@ -266,11 +235,9 @@ a
 id_faest[a]
 ```
 
-
-* Matrizes:
+-   Matrizes:
 
 A indexação para matrizes é feita da seguinte forma `A[i,j]`, que significa que temos o valor de `A` na linha `i` e coluna `j`. Por exemplo:
-
 
 ```{r}
 A
@@ -281,11 +248,9 @@ j <- 2
 A[i,j]
 ```
 
-
-* Arrays:
+-   Arrays:
 
 A indexação para *arrays* é feita da seguinte forma `Y[i,j,k]`, que significa que temos o valor de `Y` na linha `i`, coluna `j` e dimensão `k`. Por exemplo:
-
 
 ```{r}
 Y
@@ -297,11 +262,9 @@ k <- 2
 Y[i, j, k]
 ```
 
-
-* Listas:
+-   Listas:
 
 A indexação para listas é feita da seguinte forma `V[[i]]`, que significa que temos a dimensão `i` da lista. Por exemplo:
-
 
 ```{r}
 W
@@ -322,17 +285,13 @@ W[[4]][1,,2]
 
 ```
 
-
 ## Programação Básica
-
 
 Veremos alguma estruturas de contole.
 
 ### Condição:
 
-
-
-* `IF(){}ELSE(){}`:
+-   `IF(){}ELSE(){}`:
 
 Usaremos o exemplo de uma equação do 2 grau, em que
 
@@ -362,8 +321,7 @@ if(delta > 0){
 
 ```
 
-
-* `ifelse`: mudanção de elementos dentro de um objeto baseado em uma condição.
+-   `ifelse`: mudanção de elementos dentro de um objeto baseado em uma condição.
 
 Para o exemplo com a variável gênero:
 
@@ -375,19 +333,15 @@ genero_cod
 
 Para o exemplo com a variável idade:
 
-
 ```{r}
 id_faest
 id_cod <- ifelse( id_faest<20, "Novinho(a)", "Velinho(a)")
 id_cod
 ```
 
-
-
 ## Loops:
 
-* Exemplo da soma:
-
+-   Exemplo da soma:
 
 ```{r}
 sum(id_faest)
@@ -395,16 +349,15 @@ sum(id_faest)
 
 Somando na mão, que não devemos fazer!
 
-```
+```         
 id_faest[1]+id_faest[2]+id_faest[3]+...
 ```
 
-
-* O `for`
+-   O `for`
 
 É um tipo de `loop` em que:
 
-```
+```         
 for(var in vet){
 
 }
@@ -434,21 +387,17 @@ for(i in 1:n){
 soma
 ```
 
-
-* Loop `while`:
-
+-   Loop `while`:
 
 É um tipo de `loop` em que:
 
-
-```
+```         
 while(cond){
 
 }
 ```
 
 Usando o exemplo da soma. Precisamos somar todos os `n` elementos. Logo,
-
 
 ```{r}
 n <- length(id_faest)
@@ -462,15 +411,11 @@ soma
 
 ```
 
-
-
 ## Funções
-
 
 Temos como exemplo a função `sum()` que calcula a soma dos elementos de um vetor. Podemos criar nossas próprias funções usando `function(arg1, arg2, ...){ expressões da função  }`.
 
-
-* Exemplo da soma:
+-   Exemplo da soma:
 
 ```{r}
 
@@ -497,11 +442,9 @@ soma(id_faest)
 
 ```
 
-
-* Exemplo com `NA`:
+-   Exemplo com `NA`:
 
 No `R` o `NA` representa o *not avaliable* (não disponível). Assim, seja o segunite vetor:
-
 
 ```{r}
 teste <- c(id_faest, NA) 
@@ -512,30 +455,21 @@ is.na(teste)
 teste[is.na(teste)==FALSE]
 ```
 
-
-
-
-* Realizando a soma sem remover:
-
+-   Realizando a soma sem remover:
 
 ```{r}
 soma(teste)
 ```
 
-
-* Realizando a soma removendo:
-
+-   Realizando a soma removendo:
 
 ```{r}
 soma(x=teste, remove.na = TRUE)
 ```
 
-
-* Exemplo com a função variância:
-
+-   Exemplo com a função variância:
 
 Sabemos que a variância é definida por
-
 
 $$S^{2}=\dfrac{1}{n-1}\sum\limits_{i=1}^{n}(x_{i}-\overline{x})^2.$$
 
@@ -556,10 +490,7 @@ media <- function(x=x, remove.na=FALSE){
 }
 ```
 
-
 Assim a função da variância é dada por:
-
-
 
 ```{r}
 variancia <- function(x=x, remove.na=FALSE){
@@ -577,21 +508,16 @@ variancia <- function(x=x, remove.na=FALSE){
 
 Calculando a variância para o vetor `teste`, temos
 
-
 ```{r}
 variancia(x=teste, remove.na = TRUE)
 var(teste, na.rm = TRUE)
 ```
 
-
-
 ## Leitura de bases de dados:
 
-
-* Aqruivo de texto `.txt`:
+-   Aqruivo de texto `.txt`:
 
 A função para este caso é a `read.table()`. Para os dados `banco_aula.txt`, temos:
-
 
 ```{r}
 
@@ -600,11 +526,9 @@ dados.txt <- read.table(file="banco_aula.txt", header = TRUE, sep="",
 dados.txt
 ```
 
-
-* Aqruivo de texto `.csv`:
+-   Aqruivo de texto `.csv`:
 
 A função para este caso é a `read.csv()`. Para os dados `banco_aula.csv`, temos:
-
 
 ```{r}
 
@@ -613,9 +537,7 @@ dados.csv <- read.csv(file="banco_aula.csv", header = TRUE, sep=";",
 dados.csv
 ```
 
-
-
-* Arquivo do excel `.xlsx`
+-   Arquivo do excel `.xlsx`
 
 Para a leitura dos dados vamos precisar do pacote `readxl`. No console, use `install.packages("readxl")` para instalar, caso não tenha feito isso.
 
@@ -625,54 +547,112 @@ dados.xlsx <- read_xlsx(path = "banco_aula.xlsx", sheet = 1)
 dados.xlsx
 ```
 
-## Gráficos:
-
+## Gráficos para variáveis quantitativas:
 
 A funação mais simples para qualquer gráfico é `plot()`.
 
-
-* Exemplo com os `dados_aula.xlsx`:
-
+-   Exemplo com os `dados_aula.xlsx`:
 
 ```{r}
-par(mfrow=c(1,2))
+#par(mfrow=c(1,2))
 plot(dados.xlsx$Idade, xlab="Indivíduos",
-     ylab="Idade", main="Exempo 1.", sub="Gráfico da idade.")
+     ylab="Idade", main="Exempo 1", sub="Gráfico da idade.")
+```
+
+### Gráfico de dispersão:
+
+Vamos avaliar a relação entre duas variáveis quantitativas. <!-- Uma forma de medir a associação entre duas variáveis quantitativas  -->
+
+No caso da Idade e Altura, a medida de correlação de Pearson é `r  cor(x=dados.xlsx$Idade, y=dados.xlsx$Altura)`. Logo, como o valor da correlação é positivo, tem-se o indicativo de que a correlação é positiva linear crescente.
+
+```{r}
 plot(dados.xlsx$Idade, dados.xlsx$Altura, xlab="Idade",
-     ylab="Altura", main="Exempo 1.", sub="Gráfico da idade pela altura")
+     ylab="Altura", main="Exempo 2", sub="Gráfico da idade pela altura")
+```
+
+
+### Histograma:
+
+
+Este gráfico serve para avaliar distribuição dos dados.
+
+
+* Exemplo usando a variável Altura:
+
+```{r, warning=FALSE}
+
+hist(x=dados.xlsx$Altura,ylab="Densidade", xlab="Altura", main="Gráfico da Altura", sub="Exemplo de subtítulo", col = "darkblue", border = "white", freq = FALSE)
+```
+
+
+```{r, warning=FALSE}
+x <- rnorm(1000)
+hist(x,ylab="Densidade", xlab="Variável Normal", main="Gráfico da Variável Normal", sub="Exemplo de subtítulo", col = "darkblue", border = "white", freq = FALSE)
 ```
 
 
 
+### Gráfico de caixa (Boxplot):
+
+Serve para avaliar a distribuição de um conjunto d dados, assim como fornecer informações como medidas de resumo e outras características.
+
+* Na forma horizontal:
+
+```{r}
+par(mfrow=c(2,1))
+boxplot(dados.xlsx$Idade, horizontal = TRUE)
+boxplot(dados.xlsx$Altura, horizontal = TRUE)
+```
+
+* Na forma vertical:
+
+```{r}
+par(mfrow=c(1,2))
+boxplot(dados.xlsx$Idade, horizontal = FALSE)
+boxplot(dados.xlsx$Altura, horizontal = FALSE)
+```
+
+
+* Gráfico de caixa por grupo:
+
+
+```{r}
+boxplot(dados.xlsx$Idade~dados.xlsx$Sexo)  
+```
+
+
+## Gráficos para variáveis qualitativas:
+
+
+Para realizar uma tabela de frequências, você precisa usar o comando `table()`.
+
+
+* Exemplo variável Sexo:
+
+A distribuição de frequências:
+
+```{r}
+tabelaSexo <- table(dados.xlsx$Sexo)
+tabelaSexo
+```
+
+A proporção de cada grupo:
+
+```{r}
+ProptabelaSexo <- prop.table(table(dados.xlsx$Sexo))
+ProptabelaSexo*100
+```
+
+
+O gráfico de barras:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```{r}
+par(mfrow=c(1,2))
+barplot(tabelaSexo)
+barplot(ProptabelaSexo)
+```
 
 
 
