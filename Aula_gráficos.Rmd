@@ -113,15 +113,23 @@ ProptabelaSexo*100
 
 O gráfico de barras:
 
-
-
 ```{r}
 par(mfrow=c(1,2))
-barplot(tabelaSexo)
-barplot(ProptabelaSexo)
+plot1 <-barplot(tabelaSexo, ylab="Frequência absoluta", xlab="Sexo", ylim=c(0,8), xaxt="n")
+text(x=c(0.7,1.9), y= c(7,5), labels= as.numeric(tabelaSexo))
+axis(side=1, at = plot1, labels = c("Feminino", "Masculino"))
+barplot(ProptabelaSexo, ylab="Frequência relativa", xlab="Sexo", ylim=c(0,1))
 ```
 
 
+## Gráfico de setores:
+
+
+```{r}
+lab <- paste(round(as.numeric(ProptabelaSexo)*100), "%", "\n")
+pie(ProptabelaSexo, labels = lab, col = c("darkgray","darkblue"))
+legend("topright", c("Feminino", "Masculino"), lty=1, col = c("darkgray","darkblue"), bty="n")
+```
 
 
 
