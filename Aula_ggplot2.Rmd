@@ -76,7 +76,7 @@ ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width))+
   geom_point()+
   ylab("Largura da sépala")+
   xlab("Comprimento da sépala")+
-  ggtitle("Comprimento e largura de Sépalas")
+  ggtitle("Comprimento e largura de Sépalas - Dispersão")
 ```
 
 
