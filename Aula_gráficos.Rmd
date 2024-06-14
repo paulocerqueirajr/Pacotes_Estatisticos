@@ -126,9 +126,96 @@ axis(side=1, at= plot2, labels = c("Feminino", "Masculino") )
 text(x=c(0.7,1.9), y=c(70,50), labels= as.numeric(ProptabelaSexo*100))
 ```
 
+Podemos ter um gráfco de barras usando:
+
+
+```{r}
+par(mfrow=c(1,1))
+plot1 <- barplot(tabelaSexo, xlim=c(0,8), ylab="Gênero", xlab="Frequência absluta",
+                 col=c("darkgray", "darkblue"), horiz = TRUE)
+#axis(side=1, at= plot1, labels = c("Feminino", "Masculino") )
+text(y=c(0.7,1.9), x=c(7,5), labels= as.numeric(tabelaSexo))
+```
+
+## Gráfico de setores
+
+
+```{r}
+val <- round(as.numeric(ProptabelaSexo)*100,2)
+lab <- paste(val,"%", sep="")
+pie(ProptabelaSexo, labels = lab, col=c("darkgray", "darkblue"))
+legend("topleft", c("Feminino", "Masculino"), col=c("darkgray", "darkblue"), lwd=3, lty=1, bty="n")
+```
+
+
+## Gráfico de linhas
+
+
+```{r}
+id    <- dados.xlsx$Id
+idade <- dados.xlsx$Idade
+idade2 <- idade+5 
+idade3 <- idade+10 
+plot(id, idade, ylim=c(10,70), type="l", lty=1)
+lines(id, idade2, lty=2)
+lines(id, idade3, lty=3)
+legend("top", c("Idade", "Idade2", "Idade3"), lty=c(1,2,3), bty="n")
+```
+   
+
+### Exemplo com os dados Airpassengers:
+
+```{r}
+data("AirPassengers")
+Qtd <- as.numeric(AirPassengers)
+Qtd
+plot3 <- plot(x=1:length(Qtd), Qtd, type="l", xaxt="n")
+mes <- c("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
+ano <- sort(rep(seq(1949, 1960),length(mes)))
+lab <- paste(mes,"-", ano, sep="")
+axis(1, at=1:length(Qtd), labels =as.character(ano), cex.axis=0.5)
+```
 
 
 
+### Dados do Titanic:
+
+
+```{r}
+#install.packages("titanic")
+require(titanic)
+data("titanic_train")
+head(titanic_train)
+names(titanic_train)
+```
+
+O percentual de sobreviventes:
+
+
+```{r}
+tab1 <- prop.table(table(titanic_train$Survived))*100
+lab1 <- paste(round(as.numeric(tab1),2), "%", sep="")
+pie(tab1, labels = lab1, col=c("darkgray", "darkblue"))
+legend("topright", c("Morto", "Sobrevivente"), lty=1, col=c("darkgray", "darkblue"), bty="n")
+```
+
+
+Avaliando a quantidade de sobreviventes por classe:
+
+```{r}
+tab2 <- table(titanic_train$Survived, titanic_train$Pclass)
+tab2
+barplot(tab2, xlab="Classe", ylab="Frequência absoluta", col=c(1,2), ylim=c(0,600))
+legend("top", c("Morto", "Sobrevivente"), lty=1, col=c(1,2), bty="n")
+```
+
+
+Avaliando a quantidade de sobreviventes por idade:
+
+```{r}
+dados_idade <- titanic_train[is.na(titanic_train$Age)==FALSE,]
+boxplot(dados_idade$Age ~ dados_idade$Survived)
+```
 
 
 

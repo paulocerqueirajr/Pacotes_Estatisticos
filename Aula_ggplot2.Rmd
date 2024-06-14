@@ -1,0 +1,89 @@
+---
+title: "Inrtodução ao ggplot2"
+author: "Paulo Cerqueira. Jr"
+date: "2024-06-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, comment="", warning=FALSE)
+```
+
+## Criando gráficos com a base `iris`:
+
+
+Os dados `iris` são os seguintes 
+
+
+```{r}
+head(iris)
+```
+
+
+## Instalar o pacote ggplot:
+
+A instalação do pacote se dá usando o seguinte código:
+
+
+```{r, eval=FALSE}
+install.packages(ggplot2)
+```
+
+E para carregar o pacote use a função:
+
+
+```{r}
+library(ggplot2)
+```
+
+
+## Comaparação `plot` versus `ggplot2`:
+
+
+* `plot`:
+
+
+```{r}
+plot(iris$Sepal.Length, iris$Sepal.Width, ylab="Comprimento", xlab="Largura", main="Gráfico de dispersão")
+```
+
+
+* `ggplot`: A base é definida da seguinte forma
+
+```{r}
+ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width))
+```
+
+
+Para um gráfico de dispersão temos:
+
+```{r}
+ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width)) + geom_point()
+```
+
+
+Para incluir o nome dos eixos temos:
+
+```{r}
+ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width))+geom_point()+ylab("Largura da sépala")+xlab("Comprimento da sépala")
+```
+
+
+O título:
+
+```{r}
+ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width))+
+  geom_point()+
+  ylab("Largura da sépala")+
+  xlab("Comprimento da sépala")+
+  ggtitle("Comprimento e largura de Sépalas")
+```
+
+
+
+
+
+
+
+
+
