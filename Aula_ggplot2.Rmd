@@ -81,9 +81,77 @@ ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width))+
 
 
 
+## Melhorando o gráfico:
+
+* Incluindo cores e formatos:
+
+```{r}
+a <- ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width, shape=Species, color=Species))+
+  ylab("Largura da sépala")+
+  xlab("Comprimento da sépala")+
+  ggtitle("Comprimento e largura de Sépalas - Dispersão")
+a <- a + geom_point(size=4)
+a  
+```
+
+
+
+* Incluindo resumos de suavização:
+
+
+
+```{r}
+a <- ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width))+
+  geom_point(size=3)
+a <- a + geom_smooth(method = "lm")
+a  
+```
+
+Colocando no gráfico as cores por espécie temos:
+
+```{r}
+a <- ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+
+  geom_point(size=3)
+a <- a + geom_smooth(method = "lm")
+a
+```
+
+Usando as facetas
+
+```{r}
+a <- ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width))+
+  geom_point(size=3)+ 
+  geom_smooth(method = "lm")+
+  facet_grid(.~Species)
+a
+```
+
+
+```{r}
+a <- ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width))+
+  geom_point(size=3)+ 
+  geom_smooth(method = "lm")+
+  facet_grid(Species~.)
+a
+```
+
+## Mudando a legenda:
 
 
 
 
+```{r}
+a <- ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+ geom_point(size=3)
+a + scale_color_discrete(name="Espécies")
+
+```
+
+
+```{r}
+a <- ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species))+ geom_point(size=3)
+a +  scale_color_discrete(name="Espécies",
+ breaks=c("virginica","setosa","versicolor"),
+ labels=c("Espécie 1", "Espécie 2", "Espécie 3"))
+```
 
 
